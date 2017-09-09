@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const Articles = require("./nyt-react/models/articles");
+const Articles = require("./models/articles");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const cors = require("cors");
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-app.use(express.static(__dirname, "./nyt-react/public"));
+app.use(express.static("public"));
 
 // MongoDB Configuration configuration (Change this URL to your own DB)
 mongoose.connect("mongodb://heroku_lrgjpdz0:72360jhisaje1fecnrjglb2r8t@ds129024.mlab.com:29024/heroku_lrgjpdz0");
