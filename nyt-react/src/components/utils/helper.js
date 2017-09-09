@@ -8,16 +8,14 @@ const authKey = "b9f91d369ff59547cd47b931d8cbc56b:0:74623931";
 // Helper Functions\
 const helpers = {
 
-    
-    //what to include in the api query    
 
     //performing the request
-    runQuery: (numArticles) => {
+    runQuery: (numArticles, searchTerm) => {
 
 
 //queryURL for NYT API
 const queryURL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key="
-${authKey}"&q=`;
+${authKey}"&q=${searchTerm}`;
 
         console.log(numArticles, queryURL);
         return axios.get(queryURL).then((NYTData) => {

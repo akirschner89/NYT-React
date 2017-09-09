@@ -22,7 +22,7 @@ class Main extends Component {
           endYear: ""
         };
     
-        this.setTerm = this.setTerm.bind(this);
+        // this.setTerm = this.setTerm.bind(this);
       }
 
       componentDidUpdate(prevProps, prevState) {
@@ -64,11 +64,11 @@ class Main extends Component {
           }
 
 
-          setTerm(term) {
-            this.setState({
-              searchTerm: term
-            });
-          }
+          // setTerm(term) {
+          //   this.setState({
+          //     searchTerm: term
+          //   });
+          // }
 
 
 
@@ -94,7 +94,7 @@ class Main extends Component {
           <div className="row">
 
             {/* This code will dump the correct Child Component */}
-            {this.props.children}
+            {this.props.results}
 
           </div>
 
