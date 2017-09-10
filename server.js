@@ -36,7 +36,7 @@ db.once("open",() => {
 //API Routes
 
 // This is the route we will send GET requests to retrieve our most recent search data.
-app.get("/api/saved", (req, res) => {
+app.get("https://localhost:3001/api/saved", (req, res) => {
 
   // We will find all the records, sort it in descending order, then limit the records to 5
   Articles.find({}).sort([
@@ -52,15 +52,15 @@ app.get("/api/saved", (req, res) => {
 });
 
 // This is the route we will send POST requests to save each search.
-app.post("/api/saved", (req, res) => {
+app.post("https://localhost:3001/api/saved", (req, res) => {
 //   console.log("BODY: " + req.body.location);
   // Here we'll save the location based on the JSON input.
   // We'll use Date.now() to always get the current date time
   Articles.create({
       //replace below with JSON info via API call req.body.etc....
-    title: res.body.searchTerm,
+    title: res.body.title,
     date: res.body.date,
-    url: res.body.web_url
+    url: res.body.url
   }, function(err) {
     if (err) {
       console.log(err);

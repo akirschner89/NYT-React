@@ -30,7 +30,7 @@ class Main extends Component {
             if (prevState.searchTerm !== this.state.searchTerm) {
               console.log("UPDATED");
         
-              helpers.runQuery(this.state.searchTerm).then((data) => {
+              helpers.runQuery(this.state.numArticles, this.state.searchTerm).then((data) => {
                 if (data !== this.state.results) {
                   console.log(data);
         

@@ -1,5 +1,5 @@
  import React, { Component } from 'react';
-//  import helpers from "./../utils/helper";
+ import helpers from "./../utils/helper";
 
 class search extends Component {
 
@@ -28,7 +28,23 @@ class search extends Component {
         event.preventDefault();
         console.log("CLICK");
         console.log(this.state.searchTerm);
-        // this.props.setTerm(this.state.term);
+
+        helpers.runQuery(this.state.numArticles, this.state.searchTerm).then((data) => {
+          if (data !== this.state.results) {
+            console.log(data);
+  
+            this.setState({ results: data });
+          }
+        });
+
+        helpers.saveArticles(this.state.searchTerm).then((data) => {
+          if (data !== this.state.results) {
+            console.log(data);
+  
+            this.setState({ results: data });
+          }
+        });
+
         this.setState({ searchTerm: "", numArticles: "", startYear: "", endYear: "", });
       }
 

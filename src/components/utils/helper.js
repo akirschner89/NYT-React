@@ -13,60 +13,57 @@ const helpers = {
     runQuery: (numArticles, searchTerm) => {
 
 
-//queryURL for NYT API
-const queryURL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key="
+        //queryURL for NYT API
+        const queryURL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key="
 ${authKey}"&q=${searchTerm}`;
 
         console.log(numArticles, queryURL);
         return axios.get(queryURL).then((NYTData) => {
-            
+
             console.log(NYTData);
             return NYTData.response.docs[numArticles];
         });
-      },
+    },
 
-      getArticles: (numArticles) => {
-        return axios.get("/api/saved").then((NYTData) => {
-            
+    getArticles: () => {
+        return axios.get("https://localhost:3001/api/saved").then((NYTData) => {
+
             console.log(NYTData);
-            return NYTData.response.docs[numArticles];
+            return NYTData;
         });
-      },
+    },
 
-      saveArticles: (numArticles) => {
-        
-                
-                return axios.post("/api/saved").then((NYTData) => {
-                    
-                    console.log(NYTData);
-                    return NYTData.response.docs[numArticles];
-                });
-              },
+    saveArticles: () => {
+        return axios.post("https://localhost:3001/api/saved").then((NYTData) => {
 
-              deleteArticles: () => {
-                
-                        return axios.delete("/api/saved").then((response) => {
-                            
-                            console.log(response);
-                            return response.docs[0];
-                        });
-                      }
+            console.log(NYTData);
+            return NYTData;
+        });
+    },
 
-            // //for displaying the GET route articles
-            // getArticles: (NYTData) => {
-            //     return axios.get("/api/saved", NYTData);
-            // };
-  
-            // //for POSTing the new articles to the db
-            // saveArticles: (NYTData) => {
-            //     return axios.post("/api/saved", NYTData);
-            // };
+    deleteArticles: () => {
+        return axios.delete("https://localhost:3001/api/saved").then((response) => {
 
-            // //for DELETE route to delete articles from the db
-            // deteleArticles: (NYTData) => {
-            //     return axios.delete("api/saved", NYTData);
-            // };
-    };
+            console.log(response);
+            return response;
+        });
+    }
+
+    // //for displaying the GET route articles
+    // getArticles: (NYTData) => {
+    //     return axios.get("/api/saved", NYTData);
+    // };
+
+    // //for POSTing the new articles to the db
+    // saveArticles: (NYTData) => {
+    //     return axios.post("/api/saved", NYTData);
+    // };
+
+    // //for DELETE route to delete articles from the db
+    // deteleArticles: (NYTData) => {
+    //     return axios.delete("api/saved", NYTData);
+    // };
+};
 
 // We export the helpers function (which contains getGithubInfo)
 export default helpers;
