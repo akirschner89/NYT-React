@@ -32,18 +32,11 @@ class search extends Component {
         helpers.runQuery(this.state.numArticles, this.state.searchTerm).then((data) => {
           if (data !== this.state.results) {
             console.log(data);
-  
             this.setState({ results: data });
-          }
+            helpers.saveArticles(this.state.results);
+          } 
         });
 
-        helpers.saveArticles(this.state.searchTerm).then((data) => {
-          if (data !== this.state.results) {
-            console.log(data);
-  
-            this.setState({ results: data });
-          }
-        });
 
         this.setState({ searchTerm: "", numArticles: "", startYear: "", endYear: "", });
       }

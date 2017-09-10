@@ -6,7 +6,7 @@ class saved extends Component {
     constructor(props) {
         super(props);
         this.setState = {
-        results: []
+        results: {}
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -14,22 +14,18 @@ class saved extends Component {
       }
 
 
-    componentDidMount() {
-    helpers.getArticles().then((data) => {
-        if (data !== this.state.results) {
-          console.log(data);
+    // componentDidMount() {
+    // helpers.getArticles().then((data) => {
+    //     if (data !== this.props.results) {
+    //       console.log(data);
 
-          this.setState({ results: data });
-        }
-      });
-    };
+    //       this.setState({ results: data });
+    //     }
+    //   });
+    // };
 
     handleChange() {
-        helpers.deleteArticles().then((data) => {
-            console.log(data);
-    
-            this.setState({ results: data });
-          });
+        helpers.deleteArticles();
     };
 
 

@@ -38,6 +38,14 @@ class Main extends Component {
                 }
               });
 
+              helpers.saveArticles(this.state.searchTerm).then((data) => {
+                if (data !== this.state.results) {
+                  console.log(data);
+        
+                  this.setState({ results: data });
+                }
+              });
+
               helpers.getArticles(this.state.searchTerm).then((data) => {
                 if (data !== this.state.results) {
                   console.log(data);
@@ -46,13 +54,6 @@ class Main extends Component {
                 }
               });
 
-              helpers.saveArticles(this.state.searchTerm).then((data) => {
-                if (data !== this.state.results) {
-                  console.log(data);
-        
-                  this.setState({ results: data });
-                }
-              });
 
               helpers.deleteArticles(this.state.searchTerm).then((data) => {
                   console.log(data);
@@ -94,7 +95,7 @@ class Main extends Component {
           <div className="row">
 
             {/* This code will dump the correct Child Component */}
-            {this.props.results}
+            {this.state.results}
 
           </div>
 

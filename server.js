@@ -36,9 +36,9 @@ db.once("open",() => {
 //API Routes
 
 // This is the route we will send GET requests to retrieve our most recent search data.
-app.get("https://localhost:3001/api/saved", (req, res) => {
+app.get("/api/saved", (req, res) => {
 
-  // We will find all the records, sort it in descending order, then limit the records to 5
+  // We will find all the records, sort it in descending order
   Articles.find({}).sort([
     ["date", "descending"]
   ]).exec((err, doc) => {
@@ -52,27 +52,27 @@ app.get("https://localhost:3001/api/saved", (req, res) => {
 });
 
 // This is the route we will send POST requests to save each search.
-app.post("https://localhost:3001/api/saved", (req, res) => {
+app.post("/api/saved", (req, res) => {
 //   console.log("BODY: " + req.body.location);
   // Here we'll save the location based on the JSON input.
   // We'll use Date.now() to always get the current date time
   Articles.create({
       //replace below with JSON info via API call req.body.etc....
-    title: res.body.title,
-    date: res.body.date,
-    url: res.body.url
-  }, function(err) {
+    title: req.body.title,
+    date: req.body.date,
+    url: req.body.url
+  }, (err, doc) => {
     if (err) {
       console.log(err);
     }
     else {
-      res.send("Saved Articles");
+      res.send(doc);
     }
   });
 });
 
-app.delete("api/saved", (req, res) => {
-    Articles.destroy({}).exec((err, doc) => {
+app.delete("/api/saved", (req, res) => {
+    Articles.remove({}).exec((err, doc) => {
         if (err) {
           console.log(err);
         }
